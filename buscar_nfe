@@ -1,0 +1,60 @@
+import os
+import shutil
+import pandas as pd
+
+# Lendo arquivo excel
+df = pd.read_excel("Pasta1.xlsx")
+
+# Extensões de arquivo a serem procuradas
+extensions = (".pdf", ".xml")
+
+# Iterando sobre as linhas do arquivo excel
+for index, row in df.iterrows():
+    if not pd.isna(row["CODUSINA"]) and not pd.isna(row["Empresa"]):
+        # convertendo o valor para string para evitar o erro
+        codusina = str(int(row["CODUSINA"]))
+        empresa = row["Empresa"]
+        if empresa == "SPEX":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX1":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX2":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX3":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX4":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX5":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX6":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX7":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX8":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        elif empresa == "SPEX9":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO
+        elif empresa == "SPEX10":
+            path = r'\\LINK_DA_PASTA_ORIGEM'
+            save_path = r'C:\LINK_DA_PASTA_DESTINO'
+        else:
+            print("Empresa não encontrada na linha ", index)
+            continue
+        for file in os.listdir(path):
+            if file.endswith(extensions) and codusina in file:
+                file_path = os.path.join(path, file)
+                save_file_path = os.path.join(save_path, file)
+                # copiando arquivo para pasta de destino
+                shutil.copy2(file_path, save_file_path)
+    else:
+        print("Valor de CODUSINA ou Empresa não encontrado na linha ", index)
